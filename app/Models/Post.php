@@ -51,5 +51,5 @@ class Post extends Model
     public function media(): HasMany
     {
         return $this->hasMany(Media::class);
-    }
+}
 }
