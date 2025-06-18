@@ -7,8 +7,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Category extends Model
 {
-    public function categories(): BelongsToMany
+    protected $fillable = [
+        'category_name',
+        'slug',
+        'description'
+    ];
+    public function posts(): BelongsToMany
     {
-        return $this->belongsToMany(Category::class, 'post_category');
+        return $this->belongsToMany(Post::class, 'post_category');
     }
 }

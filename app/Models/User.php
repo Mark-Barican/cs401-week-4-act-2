@@ -15,6 +15,13 @@ class User extends Authenticatable
     use HasFactory, Notifiable;
 
     /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var bool
+     */
+    public $timestamps = false;
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var list<string>
@@ -23,6 +30,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'registration_date',
+        'last_login_date',
     ];
 
     /**
@@ -45,6 +54,8 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'registration_date' => 'datetime',
+            'last_login_date' => 'datetime',
         ];
     }
 
@@ -55,11 +66,11 @@ class User extends Authenticatable
 
     public function posts(): HasMany
     {
-        return $this->hasMany(Role::class);
+        return $this->hasMany(Post::class);
     }
 
     public function comments(): HasMany
     {
-        return $this->hasMany(Role::class);
+        return $this->hasMany(Comment::class);
     }
 }

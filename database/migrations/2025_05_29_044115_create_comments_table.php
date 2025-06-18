@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->text('comment_content ')->comment('The content of the comment');
+            $table->text('comment_content')->comment('The content of the comment');
             $table->timestamp('comment_date')->comment('The date and time when the comment was made');
             $table->string('reviewer_name')->comment('The name of the person who made the comment');
             $table->string('reviewer_name_email')->comment('The email of the person who made the comment');

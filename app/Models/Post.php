@@ -9,9 +9,28 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Post extends Model
 {
-    public function posts(): BelongsToMany
+    protected $fillable = [
+        'title',
+        'content',
+        'slug',
+        'publication_date',
+        'last_modified_date',
+        'status',
+        'featured_image',
+        'views_count',
+        'user_id'
+    ];
+
+    protected $casts = [
+        'publication_date' => 'datetime',
+        'last_modified_date' => 'datetime',
+        'views_count' => 'integer'
+    ];
+
+    public $timestamps = false;
+    public function categories(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'post_category');
+        return $this->belongsToMany(Category::class, 'post_category');
     }
 
     public function tags(): BelongsToMany
@@ -21,12 +40,16 @@ class Post extends Model
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class);
+    }
+
+    public function comments(): HasMany
+    {
+        return $this->hasMany(Comment::class);
     }
 
     public function media(): HasMany
     {
         return $this->hasMany(Media::class);
-
-}
+    }
 }

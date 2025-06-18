@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name')->comment('user name.')->max(30)->change();
         });
         Schema::table('roles', function(Blueprint $table) {
-            $table->string('role name')->comment('A - Admin, C - Contributor, S - Subscriber')->max(1)->change();
+            $table->string('role_name')->comment('A - Admin, C - Contributor, S - Subscriber')->max(1)->change();
         });
         Schema::table('posts', function(Blueprint $table) {
             $table->text('content')->comment('comment of the post.')->change();
@@ -24,7 +24,7 @@ return new class extends Migration
         Schema::table('posts', function(Blueprint $table) {
             $table->text('content')->comment('comment of the post.')->change();
             $table->string('status')->comment('status of post.')->change();
-            $table->text('featured_image_url')->comment('feature image url')->change();
+            $table->text('featured_image')->comment('feature image url')->change();
         });
         Schema::table('categories', function(Blueprint $table) {
             $table->text('category_name')->comment('name of category.')->max(30)->change();
